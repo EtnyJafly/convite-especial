@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Convite Especial ❤️</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow: hidden;
+
+            background: linear-gradient(
+                135deg,
+                #ff758c,
+                #ff7eb3
+            );
+        }
+
+        .tela {
+            min-height: 100vh;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            padding: 20px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        h1 {
+            color: white;
+
+            font-size: clamp(
+                2rem,
+                7vw,
+                3.5rem
+            );
+
+            margin-bottom: 15px;
+
+            text-shadow:
+                2px 2px 12px
+                rgba(0, 0, 0, 0.25);
+        }
+
+        .subtitulo {
+            color: white;
+
+            font-size: 1.2rem;
+
+            margin-bottom: 25px;
+        }
+
+        .foto {
+            width: 210px;
+            height: 210px;
+
+            object-fit: cover;
+
+            border-radius: 50%;
+            border: 6px solid white;
+
+            margin-bottom: 25px;
+
+            box-shadow:
+                0 12px 30px
+                rgba(0, 0, 0, 0.25);
+        }
+
+        .btns {
+            display: flex;
+            justify-content: center;
+
+            gap: 20px;
+
+            margin-top: 20px;
+        }
+
+        button {
+            border: none;
+            border-radius: 14px;
+
+            padding: 15px 30px;
+
+            font-size: 19px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.25s,
+                box-shadow 0.25s;
+        }
+
+        button:hover {
+            transform: scale(1.07);
+
+            box-shadow:
+                0 8px 20px
+                rgba(0, 0, 0, 0.2);
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+        #sim {
+            background: #28a745;
+            color: white;
+        }
+
+        #nao {
+            background: #dc3545;
+            color: white;
+
+            position: relative;
+
+            z-index: 20;
+
+            user-select: none;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+
+            gap: 20px;
+
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .card {
+            width: 230px;
+
+            background: white;
+
+            border-radius: 22px;
+
+            overflow: hidden;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.3s,
+                box-shadow 0.3s;
+
+            box-shadow:
+                0 10px 25px
+                rgba(0, 0, 0, 0.18);
+        }
+
+        .card:hover {
+            transform:
+                translateY(-10px)
+                scale(1.03);
+
+            box-shadow:
+                0 18px 35px
+                rgba(0, 0, 0, 0.25);
+        }
+
+        .card img {
+            width: 100%;
+            height: 165px;
+
+            object-fit: cover;
+        }
+
+        .card h2 {
+            padding: 20px 10px;
+
+            color: #ff4d88;
+        }
+
+        .campo-container {
+            width: min(340px, 95%);
+
+            margin: 10px 0 25px;
+        }
+
+        .campo-container label {
+            display: block;
+
+            color: white;
+
+            font-size: 1.1rem;
+            font-weight: bold;
+
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+
+            padding: 16px;
+
+            border: 2px solid transparent;
+            border-radius: 12px;
+
+            font-size: 20px;
+
+            outline: none;
+
+            text-align: center;
+
+            background: white;
+            color: #333;
+
+            transition:
+                border-color 0.2s,
+                box-shadow 0.2s;
+        }
+
+        input:focus {
+            border-color: #ff4d88;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(255, 77, 136, 0.2);
+        }
+
+        input::placeholder {
+            color: #999;
+        }
+
+        .aviso {
+            color: white;
+
+            font-size: 0.95rem;
+
+            margin-top: 8px;
+        }
+
+        .botao-continuar {
+            background: white;
+            color: #ff4d88;
+        }
+
+        .final {
+            width: min(600px, 95%);
+
+            background:
+                rgba(255, 255, 255, 0.96);
+
+            padding: 35px;
+
+            border-radius: 28px;
+
+            color: #ff4d88;
+
+            box-shadow:
+                0 15px 40px
+                rgba(0, 0, 0, 0.25);
+
+            position: relative;
+
+            z-index: 10;
+        }
+
+        .final h2 {
+            font-size: 2rem;
+
+            margin-bottom: 20px;
+        }
+
+        .final p {
+            color: #444;
+
+            font-size: 1.15rem;
+
+            line-height: 1.8;
+        }
+
+        .mensagem-final {
+            margin-top: 20px;
+
+            color: #ff4d88 !important;
+
+            font-weight: bold;
+        }
+
+        .whatsapp {
+            margin-top: 25px;
+
+            background: #25d366;
+            color: white;
+        }
+
+        .voltar {
+            margin-top: 15px;
+
+            background: #f3f3f3;
+            color: #555;
+
+            font-size: 15px;
+
+            padding: 12px 22px;
+        }
+
+        /* Corações animados */
+
+        .heart {
+            position: fixed;
+
+            bottom: -80px;
+
+            color: white;
+
+            animation:
+                subir linear forwards;
+
+            pointer-events: none;
+
+            z-index: 1;
+
+            white-space: nowrap;
+
+            font-weight: bold;
+
+            text-shadow:
+                0 2px 5px
+                rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes subir {
+            0% {
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+
+                opacity: 0;
+            }
+
+            15% {
+                opacity: 0.9;
+            }
+
+            100% {
+                transform:
+                    translateY(-120vh)
+                    rotate(360deg);
+
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                overflow-y: auto;
+            }
+
+            .tela {
+                min-height: 100svh;
+            }
+
+            .foto {
+                width: 170px;
+                height: 170px;
+            }
+
+            .btns {
+                gap: 12px;
+            }
+
+            button {
+                padding: 13px 23px;
+
+                font-size: 17px;
+            }
+
+            .card-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card {
+                width: min(320px, 90%);
+            }
+
+            .card img {
+                height: 150px;
+            }
+
+            .final {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TELA INICIAL -->
+
+    <section
+        class="tela"
+        id="tela1"
+    >
+
+        <!--
+        Coloque sua foto na mesma pasta do HTML.
+
+        Exemplo:
+        index.html
+        nossa-foto.jpg
+        -->
+
+        <img
+            src="telainicial.jpg"
+            alt="Nossa foto"
+            class="foto"
+        >
+
+        <h1>
+            <span class="nome-pessoa"></span>,
+            aceita sair comigo? ❤️
+        </h1>
+
+        <p class="subtitulo">
+            Prometo que vai ser um encontro especial,
+            <span class="nome-pessoa"></span>.
+        </p>
+
+        <div class="btns">
+
+            <button id="sim">
+                Sim 😍
+            </button>
+
+            <button id="nao">
+                Não 😢
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- TELA DE ESCOLHA DA COMIDA -->
+
+    <section
+        class="tela hidden"
+        id="tela2"
+    >
+
+        <h1>
+            O que você quer comer,
+            <span class="nome-pessoa"></span>?
+            🍽️
+        </h1>
+
+        <p class="subtitulo">
+            Escolha a opção que mais combina com você.
+        </p>
+
+        <div class="card-container">
+
+            <div
+                class="card"
+                onclick="escolherLugar('Comida japonesa 🍣')"
+            >
+
+                <img
+                    src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=800"
+                    alt="Comida japonesa"
+                >
+
+                <h2>
+                    🍣 Japonesa
+                </h2>
+
+            </div>
+
+            <div
+                class="card"
+                onclick="escolherLugar('Hambúrguer 🍔')"
+            >
+
+                <img
+                    src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800"
+                    alt="Hambúrguer"
+                >
+
+                <h2>
+                    🍔 Hambúrguer
+                </h2>
+
+            </div>
+
+            <div
+                class="card"
+                onclick="escolherLugar('Pizza 🍕')"
+            >
+
+                <img
+                    src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800"
+                    alt="Pizza"
+                >
+
+                <h2>
+                    🍕 Pizza
+                </h2>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- TELA DE ESCOLHA DA DATA -->
+
+    <section
+        class="tela hidden"
+        id="tela3"
+    >
+
+        <h1>
+            Qual é o melhor dia para você,
+            <span class="nome-pessoa"></span>?
+            📅
+        </h1>
+
+        <div class="campo-container">
+
+            <label for="data">
+                Digite a data
+            </label>
+
+            <input
+                type="text"
+                id="data"
+                placeholder="DD/MM/AAAA"
+                maxlength="10"
+                inputmode="numeric"
+                autocomplete="off"
+            >
+
+            <p class="aviso">
+                Exemplo: 25/07/2026
+            </p>
+
+        </div>
+
+        <button
+            class="botao-continuar"
+            onclick="irParaHorario()"
+        >
+            Continuar
+        </button>
+
+    </section>
+
+    <!-- TELA DE ESCOLHA DO HORÁRIO -->
+
+    <section
+        class="tela hidden"
+        id="tela4"
+    >
+
+        <h1>
+            Agora escolha o horário,
+            <span class="nome-pessoa"></span>
+            ⏰
+        </h1>
+
+        <div class="campo-container">
+
+            <label for="hora">
+                Digite o horário
+            </label>
+
+            <input
+                type="text"
+                id="hora"
+                placeholder="HH:MM"
+                maxlength="5"
+                inputmode="numeric"
+                autocomplete="off"
+            >
+
+            <p class="aviso">
+                Exemplo: 19:30
+            </p>
+
+        </div>
+
+        <button
+            class="botao-continuar"
+            onclick="finalizarConvite()"
+        >
+            Confirmar encontro ❤️
+        </button>
+
+    </section>
+
+    <!-- TELA FINAL -->
+
+    <section
+        class="tela hidden"
+        id="tela5"
+    >
+
+        <div class="final">
+
+            <h2>
+                Encontro confirmado,
+                <span class="nome-pessoa"></span>!
+                💖
+            </h2>
+
+            <div id="resultado"></div>
+
+            <p class="mensagem-final">
+                Agora não tem mais volta,
+                <span class="nome-pessoa"></span>.
+                Mal posso esperar pelo nosso encontro!
+                ❤️
+            </p>
+
+            <button
+                class="whatsapp"
+                onclick="enviarWhatsapp()"
+            >
+                Compartilhar no WhatsApp
+            </button>
+
+            <br>
+
+            <button
+                class="voltar"
+                onclick="reiniciarConvite()"
+            >
+                Escolher novamente
+            </button>
+
+        </div>
+
+    </section>
+
+    <script>
+        /*
+        ===========================================
+        CONFIGURAÇÕES PRINCIPAIS
+        ===========================================
+        */
+
+        const nomePessoa = "Bigoliro Papoi";
+
+        /*
+        Exemplo:
+
+        const nomePessoa = "Beatriz";
+        */
+
+        let lugarEscolhido = "";
+
+        const botaoNao =
+            document.getElementById("nao");
+
+        const botaoSim =
+            document.getElementById("sim");
+
+        const campoData =
+            document.getElementById("data");
+
+        const campoHora =
+            document.getElementById("hora");
+
+        /*
+        ===========================================
+        COLOCA O NOME EM TODA A PÁGINA
+        ===========================================
+        */
+
+        function colocarNomeNaPagina() {
+            const camposNome =
+                document.querySelectorAll(
+                    ".nome-pessoa"
+                );
+
+            camposNome.forEach(elemento => {
+                elemento.textContent =
+                    nomePessoa;
+            });
+
+            document.title =
+                `Convite especial para ${nomePessoa} ❤️`;
+        }
+
+        colocarNomeNaPagina();
+
+        /*
+        ===========================================
+        TROCA DE TELAS
+        ===========================================
+        */
+
+        function mostrarTela(idTela) {
+            document
+                .querySelectorAll(".tela")
+                .forEach(tela => {
+                    tela.classList.add("hidden");
+                });
+
+            document
+                .getElementById(idTela)
+                .classList.remove("hidden");
+        }
+
+        botaoSim.addEventListener(
+            "click",
+            () => {
+                mostrarTela("tela2");
+            }
+        );
+
+        /*
+        ===========================================
+        BOTÃO NÃO FUGINDO
+        ===========================================
+        */
+
+        function fugirDoClique(evento) {
+            if (evento) {
+                evento.preventDefault();
+            }
+
+            const larguraBotao =
+                botaoNao.offsetWidth;
+
+            const alturaBotao =
+                botaoNao.offsetHeight;
+
+            const margem = 15;
+
+            const limiteX =
+                window.innerWidth -
+                larguraBotao -
+                margem;
+
+            const limiteY =
+                window.innerHeight -
+                alturaBotao -
+                margem;
+
+            const novaPosicaoX =
+                Math.max(
+                    margem,
+                    Math.random() * limiteX
+                );
+
+            const novaPosicaoY =
+                Math.max(
+                    margem,
+                    Math.random() * limiteY
+                );
+
+            botaoNao.style.position =
+                "fixed";
+
+            botaoNao.style.left =
+                `${novaPosicaoX}px`;
+
+            botaoNao.style.top =
+                `${novaPosicaoY}px`;
+        }
+
+        botaoNao.addEventListener(
+            "mouseenter",
+            fugirDoClique
+        );
+
+        botaoNao.addEventListener(
+            "mousedown",
+            fugirDoClique
+        );
+
+        botaoNao.addEventListener(
+            "touchstart",
+            fugirDoClique,
+            {
+                passive: false
+            }
+        );
+
+        botaoNao.addEventListener(
+            "click",
+            fugirDoClique
+        );
+
+        botaoNao.addEventListener(
+            "contextmenu",
+            evento => {
+                evento.preventDefault();
+            }
+        );
+
+        /*
+        ===========================================
+        ESCOLHA DA COMIDA
+        ===========================================
+        */
+
+        function escolherLugar(lugar) {
+            lugarEscolhido = lugar;
+
+            mostrarTela("tela3");
+
+            setTimeout(() => {
+                campoData.focus();
+            }, 300);
+        }
+
+        /*
+        ===========================================
+        MÁSCARA DA DATA: DD/MM/AAAA
+        ===========================================
+        */
+
+        campoData.addEventListener(
+            "input",
+            function () {
+                let valor =
+                    this.value.replace(
+                        /\D/g,
+                        ""
+                    );
+
+                valor =
+                    valor.substring(0, 8);
+
+                if (valor.length > 4) {
+                    valor =
+                        valor.substring(0, 2) +
+                        "/" +
+                        valor.substring(2, 4) +
+                        "/" +
+                        valor.substring(4);
+                } else if (valor.length > 2) {
+                    valor =
+                        valor.substring(0, 2) +
+                        "/" +
+                        valor.substring(2);
+                }
+
+                this.value = valor;
+            }
+        );
+
+        /*
+        ===========================================
+        MÁSCARA DO HORÁRIO: HH:MM
+        ===========================================
+        */
+
+        campoHora.addEventListener(
+            "input",
+            function () {
+                let valor =
+                    this.value.replace(
+                        /\D/g,
+                        ""
+                    );
+
+                valor =
+                    valor.substring(0, 4);
+
+                if (valor.length > 2) {
+                    valor =
+                        valor.substring(0, 2) +
+                        ":" +
+                        valor.substring(2);
+                }
+
+                this.value = valor;
+            }
+        );
+
+        /*
+        ===========================================
+        VALIDAÇÃO DA DATA
+        ===========================================
+        */
+
+        function validarDataBrasileira(data) {
+            const formato =
+                /^(\d{2})\/(\d{2})\/(\d{4})$/;
+
+            const resultado =
+                data.match(formato);
+
+            if (!resultado) {
+                return false;
+            }
+
+            const dia =
+                Number(resultado[1]);
+
+            const mes =
+                Number(resultado[2]);
+
+            const ano =
+                Number(resultado[3]);
+
+            const dataInformada =
+                new Date(
+                    ano,
+                    mes - 1,
+                    dia
+                );
+
+            const dataExiste =
+                dataInformada.getFullYear() === ano &&
+                dataInformada.getMonth() === mes - 1 &&
+                dataInformada.getDate() === dia;
+
+            if (!dataExiste) {
+                return false;
+            }
+
+            const hoje =
+                new Date();
+
+            hoje.setHours(
+                0,
+                0,
+                0,
+                0
+            );
+
+            dataInformada.setHours(
+                0,
+                0,
+                0,
+                0
+            );
+
+            return dataInformada >= hoje;
+        }
+
+        /*
+        ===========================================
+        VALIDAÇÃO DO HORÁRIO
+        ===========================================
+        */
+
+        function validarHorarioBrasileiro(
+            horario
+        ) {
+            const formato =
+                /^([01]\d|2[0-3]):([0-5]\d)$/;
+
+            return formato.test(horario);
+        }
+
+        /*
+        ===========================================
+        AVANÇA PARA O HORÁRIO
+        ===========================================
+        */
+
+        function irParaHorario() {
+            const data =
+                campoData.value.trim();
+
+            if (!data) {
+                alert(
+                    `${nomePessoa}, digite uma data para o encontro.`
+                );
+
+                campoData.focus();
+
+                return;
+            }
+
+            if (
+                !validarDataBrasileira(data)
+            ) {
+                alert(
+                    "Digite uma data válida no formato DD/MM/AAAA. A data não pode ser anterior ao dia atual."
+                );
+
+                campoData.focus();
+
+                return;
+            }
+
+            mostrarTela("tela4");
+
+            setTimeout(() => {
+                campoHora.focus();
+            }, 300);
+        }
+
+        /*
+        ===========================================
+        FINALIZA O CONVITE
+        ===========================================
+        */
+
+        function finalizarConvite() {
+            const data =
+                campoData.value.trim();
+
+            const hora =
+                campoHora.value.trim();
+
+            if (!hora) {
+                alert(
+                    `${nomePessoa}, digite um horário.`
+                );
+
+                campoHora.focus();
+
+                return;
+            }
+
+            if (
+                !validarHorarioBrasileiro(hora)
+            ) {
+                alert(
+                    "Digite um horário válido no formato HH:MM. Exemplo: 19:30."
+                );
+
+                campoHora.focus();
+
+                return;
+            }
+
+            document
+                .getElementById("resultado")
+                .innerHTML = `
+                    <p>
+                        <strong>
+                            🍽️ Comida:
+                        </strong>
+
+                        ${lugarEscolhido}
+                    </p>
+
+                    <p>
+                        <strong>
+                            📅 Data:
+                        </strong>
+
+                        ${data}
+                    </p>
+
+                    <p>
+                        <strong>
+                            ⏰ Horário:
+                        </strong>
+
+                        ${hora}
+                    </p>
+                `;
+
+            mostrarTela("tela5");
+        }
+
+        /*
+        ===========================================
+        WHATSAPP
+        ===========================================
+        */
+
+        function enviarWhatsapp() {
+    const data = campoData.value.trim();
+    const hora = campoHora.value.trim();
+
+    const mensagem = `
+Eu aceitei sair com você! ❤️
+
+Meu nome: ${nomePessoa}
+🍽️ Comida: ${lugarEscolhido}
+📅 Data: ${data}
+⏰ Horário: ${hora}
+
+Nosso encontro está confirmado! 💖
+    `.trim();
+
+    const numeroWhatsapp = "5519995121771";
+
+    const link =
+        "https://wa.me/" +
+        numeroWhatsapp +
+        "?text=" +
+        encodeURIComponent(mensagem);
+
+    window.open(link, "_blank");
+}
+
+        /*
+        ===========================================
+        REINICIA O CONVITE
+        ===========================================
+        */
+
+        function reiniciarConvite() {
+            lugarEscolhido = "";
+
+            campoData.value = "";
+            campoHora.value = "";
+
+            botaoNao.style.position =
+                "relative";
+
+            botaoNao.style.left = "";
+            botaoNao.style.top = "";
+
+            mostrarTela("tela1");
+        }
+
+        /*
+        ===========================================
+        CORAÇÕES ANIMADOS
+        ===========================================
+        */
+
+        function criarCoracao() {
+            const coracao =
+                document.createElement(
+                    "div"
+                );
+
+            coracao.className =
+                "heart";
+
+            const elementos = [
+                "❤️",
+                "💖",
+                "💕",
+                `❤️ ${nomePessoa}`,
+                `${nomePessoa} 💖`
+            ];
+
+            const indice =
+                Math.floor(
+                    Math.random() *
+                    elementos.length
+                );
+
+            coracao.textContent =
+                elementos[indice];
+
+            coracao.style.left =
+                `${Math.random() * 95}vw`;
+
+            coracao.style.fontSize =
+                `${Math.random() * 15 + 14}px`;
+
+            const duracao =
+                Math.random() * 5 + 6;
+
+            coracao.style.animationDuration =
+                `${duracao}s`;
+
+            document.body.appendChild(
+                coracao
+            );
+
+            setTimeout(() => {
+                coracao.remove();
+            }, duracao * 1000);
+        }
+
+        setInterval(
+            criarCoracao,
+            650
+        );
+    </script>
+
+</body>
+</html>
+
